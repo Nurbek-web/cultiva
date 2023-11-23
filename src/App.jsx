@@ -33,7 +33,11 @@ import Test from './components/Test';
 import Game from './components/Game';
 import Articles from './components/Articles';
 import ArticlePage from './components/ArticlePage';
-
+import Article1 from './components/articles/Article1';
+import Article2 from './components/articles/Article2';
+import Article3 from './components/articles/Article3';
+import Article4 from './components/articles/Article4';
+import Article5 from './components/articles/Article5';
 
 const items = [
   getItem('Main', '1', <PieChartOutlined />),
@@ -117,7 +121,11 @@ const App = () => {
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/game*" element={<Game />} />
                 <Route path="/articles" element={<Articles />} />
-                <Route path="/articles/:id" element={<ArticlePage />} />
+                <Route path="/articles/1" element={<Article1 />} />
+                <Route path="/articles/2" element={<Article2 />} />
+                <Route path="/articles/3" element={<Article3 />} />
+                <Route path="/articles/4" element={<Article4 />} />
+                <Route path="/articles/5" element={<Article5 />} />
               </Routes>
             {/* <RouterProvider router={router} /> */}
 
