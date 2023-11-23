@@ -41,6 +41,7 @@ const router = createBrowserRouter([
 const items = [
   getItem('Main', '1', <PieChartOutlined />),
   getItem('Chat', '2', <DesktopOutlined />),
+  getItem('Game', '3', <UserOutlined />),
 ];
 
 const App = () => {
