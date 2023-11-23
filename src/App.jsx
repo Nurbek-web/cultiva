@@ -61,7 +61,7 @@ const App = () => {
       }}  
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        {/* <div className="demo-logo-vertical"><img src='logo.png' max></div> */}
+        <div className="demo-logo-vertical"><img style={{maxWidth: 250}} /></div>
         
         <Menu style={{padding: ".5rem", marginBottom: ".25rem"}} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
