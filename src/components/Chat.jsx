@@ -1,72 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import { Input, Button, List, Avatar } from 'antd';
-import axios from 'axios';
-
-const { TextArea } = Input;
+import { useState, useEffect }  from 'react';
+import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+  TypingIndicator,
+} from '@chatscope/chat-ui-kit-react';
 
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [messages, setMessages] = useState([
+    {
+      message: "Привет, Я Cultiva AI - искусственный интеллект, разработанный для помощи в управлении теплицей. Я могу предоставить информацию, советы и рекомендации по различным аспектам выращивания растений в теплицах. В чем я могу тебе помочь?",
+      sentTime: "just now",
+      sender: "Cultiva AI",
+    },
+  ]);
+  const [isTyping, setIsTyping] = useState(false);
 
-  useEffect(() => {
-    // Fetch initial greeting from OpenAI
-    sendMessageToOpenAI('Hello, ChatBot!');
-  }, []);
-
-  const sendMessageToOpenAI = async (message) => {
+  const handleSendRequest = async (message) => {
+    const newMessage = {
+      message,
+      direction: 'outgoing',
+      sender: "user",
+    };
+  
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setIsTyping(true);
+  
     try {
-      const result = await axios.post('/chatgpt', { prompt: message });
-      const response = await fetch('http://localhost:3000/chatapi', {
-        method: 'POST',
-        body: JSON.stringify({
-          question: message,
-        }),
-      });
-
-      const data = await response.json();
-      console.log(data)
-      const botReply = data.choices[0].text.trim();
-      setMessages([...messages, { role: 'bot', content: botReply }]);
+      const response = await processMessageToChatGPT([...messages, newMessage]);
+      
+      // Check if the 'choices' array exists and has at least one element
+      if (response.choices && response.choices.length > 0) {
+        const content = response.choices[0]?.message?.content;
+        if (content) {
+          const chatGPTResponse = {
+            message: content,
+            sender: "Cultiva AI",
+          };
+          setMessages((prevMessages) => [...prevMessages, chatGPTResponse]);
+        }
+      } else {
+        console.error("Unexpected response structure:", response);
+      }
     } catch (error) {
-      console.error('Error fetching data from OpenAI:', error);
+      console.error("Error processing message:", error);
+    } finally {
+      setIsTyping(false);
     }
   };
+  
 
-  const handleSendMessage = () => {
-    if (inputMessage.trim() === '') return;
+  async function processMessageToChatGPT(chatMessages) {
+    const apiMessages = chatMessages.map((messageObject) => {
+      const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
+      return { role, content: messageObject.message };
+    });
 
-    setMessages([...messages, { role: 'user', content: inputMessage }]);
-    sendMessageToOpenAI(inputMessage);
-    setInputMessage('');
-  };
+    const apiRequestBody = {
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        { role: "system", content: "You are assistent for helping people with greenhouse" },
+        ...apiMessages,
+      ],
+    };
+
+    const response = await fetch("https://cultiva-server.vercel.app/chatapi", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer ",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apiRequestBody),
+    });
+    return response.json();
+  }
 
   return (
-    <div style={{ width: 400, margin: 'auto', marginTop: 20 }}>
-      <List
-        itemLayout="horizontal"
-        dataSource={messages}
-        renderItem={(msg, index) => (
-          <List.Item key={index}>
-            <List.Item.Meta
-              avatar={<Avatar style={{ backgroundColor: msg.role === 'bot' ? '#87d068' : '#108ee9' }} icon={msg.role === 'bot' ? 'robot' : 'user'} />}
-              title={msg.role.toUpperCase()}
-              description={msg.content}
-            />
-          </List.Item>
-        )}
-      />
-      <div style={{ marginTop: 10 }}>
-        <TextArea
-          rows={2}
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-        />
-        <Button type="primary" style={{ marginTop: 10 }} onClick={handleSendMessage}>
-          Send
-        </Button>
+    <div className="App">
+      <div style={{ position:"relative", height: "800px", width: "700px"  }}>
+        <MainContainer>
+          <ChatContainer>       
+            <MessageList 
+              scrollBehavior="smooth" 
+              typingIndicator={isTyping ? <TypingIndicator content="Cultiva AI is typing" /> : null}
+            >
+              {messages.map((message, i) => {
+                return <Message key={i} model={message} />
+              })}
+            </MessageList>
+            <MessageInput placeholder="Send a Message" onSend={handleSendRequest} />        
+          </ChatContainer>
+        </MainContainer>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Chat;

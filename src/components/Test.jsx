@@ -9,9 +9,7 @@ import {
   TypingIndicator,
 } from '@chatscope/chat-ui-kit-react';
 
-const API_KEY = import.meta.env.OPEN_AI_KEY
-
-console.log(API_KEY)
+const API_KEY = "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"
 
 const Test = () => {
   const [messages, setMessages] = useState([
@@ -64,7 +62,7 @@ const Test = () => {
       ],
     };
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://cultiva-server.vercel.app/chatapi№", {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + API_KEY,
