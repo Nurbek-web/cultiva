@@ -8,16 +8,16 @@ const Game = () => {
             onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
         }}
         >
-        <Image maxwidth={400} src="game-1.png" />
+        <Image style={{maxWidth: 800}} src="game-1.png" />
         <br />
         <Image
-            maxwidth={200}
+            style={{maxWidth: 800}}
             src="game-2.png"
             />
         </Image.PreviewGroup>
         <Flex vertical gap="small" style={{ width: '100%' }}>
             <Link to={"https://ropdxm.itch.io/nis-greenhouse"}>
-                <Button type="primary" block>
+                <Button style={{maxWidth: 800}} type="primary" block>
                     Play Game
                 </Button>
             </Link>
