@@ -19,7 +19,11 @@ import "./App.css"
 
 import {
   createBrowserRouter,
-  RouterProvider,
+  BrowserRouter,
+  redirect,
+  useNavigate,
+  Routes,
+  Route
 } from "react-router-dom";
 
 // importing components
@@ -57,7 +61,7 @@ const items = [
   getItem('Main', '1', <PieChartOutlined />),
   getItem('Chat', '2', <DesktopOutlined />),
   getItem('Game', '3', <WechatOutlined />),
-  getItem('Articles', '4', <ContainerOutlined />),
+  getItem('Articles', '4', <ContainerOutlined />)
 ];
 
 const App = () => {
@@ -65,6 +69,30 @@ const App = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const navigate = useNavigate()
+
+  const handleMenuClick = ({ key }) => {
+    // const { target } = navigation.find(item => item.key === key) || {};
+    // if (target) {
+    //   navigate(target);
+    // }
+    if (key == 1) {
+      navigate("")
+    }
+    else if (key == 2) {
+      navigate("chat")
+    }
+    else if (key == 3) {
+      navigate("game")
+    }
+    else if (key == 4) {
+      navigate("articles")
+    }
+    console.log(key)
+  };
+    
+  
   return (
     <Layout
       style={{
@@ -85,7 +113,7 @@ const App = () => {
             padding: '10px', // Adjust padding as needed
           }}/>
         
-        <Menu style={{padding: ".5rem", marginBottom: ".25rem"}} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu onClick={handleMenuClick} style={{padding: ".5rem", marginBottom: ".25rem"}} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout>
         <Header
@@ -106,7 +134,13 @@ const App = () => {
               background: colorBgContainer,
             }}
           >
-            <RouterProvider router={router} />
+              <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/game*" element={<Game />} />
+                <Route path="/articles*" element={<Articles />} />
+              </Routes>
+            {/* <RouterProvider router={router} /> */}
 
           </div>
         </Content>
