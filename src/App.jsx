@@ -16,6 +16,7 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
+import "./App.css"
 
 import {
   createBrowserRouter,
@@ -60,7 +61,18 @@ const App = () => {
       }}  
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        <div className="demo-logo-vertical"><img style={{maxWidth: 100  }} src='logo.png' /></div>
+        <img
+          className="demo-logo"
+          src='logo.png'
+          alt="Logo"
+          style={{
+            width: '70px',
+            height: '70px',
+            maxWidth: '100%',
+            borderRadius: '50%',
+            margin: '10px',  // Adjust margin as needed
+            padding: '10px', // Adjust padding as needed
+          }}/>
         
         <Menu style={{padding: ".5rem", marginBottom: ".25rem"}} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
