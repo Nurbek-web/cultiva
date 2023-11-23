@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, List, Avatar } from 'antd';
+import axios from 'axios';
 
 const { TextArea } = Input;
 
@@ -14,15 +15,16 @@ const Chat = () => {
 
   const sendMessageToOpenAI = async (message) => {
     try {
+      const result = await axios.post('/chatgpt', { prompt: message });
       const response = await fetch('http://localhost:3000/chatapi', {
         method: 'POST',
         body: JSON.stringify({
           question: message,
-
         }),
       });
 
       const data = await response.json();
+      console.log(data)
       const botReply = data.choices[0].text.trim();
       setMessages([...messages, { role: 'bot', content: botReply }]);
     } catch (error) {

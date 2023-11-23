@@ -25,6 +25,7 @@ import {
 // importing components
 import Chat from './components/Chat';
 import Landing from './components/Landing';
+import Test from './components/Test';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "chat",
     element: <Chat />
+  },
+  {
+    path: "test",
+    element: <Test />
   }
 ]);
 
