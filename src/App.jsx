@@ -25,6 +25,7 @@ import {
 // importing components
 import Chat from './components/Chat';
 import Landing from './components/Landing';
+import Test from './components/Test';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "chat",
     element: <Chat />
+  },
+  {
+    path: "test",
+    element: <Test />
   }
 ]);
 
@@ -56,7 +61,8 @@ const App = () => {
       }}  
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        <div className="demo-logo-vertical" />
+        {/* <div className="demo-logo-vertical"><img src='logo.png' max></div> */}
+        
         <Menu style={{padding: ".5rem", marginBottom: ".25rem"}} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout>
@@ -87,7 +93,6 @@ const App = () => {
             textAlign: 'center',
           }}
         >
-          Ant Design ©2023 Created by Ant UED
         </Footer>
       </Layout>
     </Layout>
