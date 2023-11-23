@@ -79,9 +79,9 @@ const Chat = () => {
 
   return (
     <div className="App">
-      <div style={{ position:"relative", height: "800px", width: "700px"  }}>
-        <MainContainer>
-          <ChatContainer>       
+      <div style={{ position:"relative", minHeight: "80vh", width: "100%"}}>
+        <MainContainer style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "90%", padding: "2rem"}}>
+          <ChatContainer>
             <MessageList 
               scrollBehavior="smooth" 
               typingIndicator={isTyping ? <TypingIndicator content="Cultiva AI is typing" /> : null}
