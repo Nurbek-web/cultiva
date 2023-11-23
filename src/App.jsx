@@ -32,7 +32,6 @@ import Landing from './components/Landing';
 import Test from './components/Test';
 import Game from './components/Game';
 import Articles from './components/Articles';
-import ArticlePage from './components/ArticlePage';
 import Article1 from './components/articles/Article1';
 import Article2 from './components/articles/Article2';
 import Article3 from './components/articles/Article3';
