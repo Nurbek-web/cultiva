@@ -28,6 +28,7 @@ import Landing from './components/Landing';
 import Test from './components/Test';
 import Game from './components/Game';
 import Articles from './components/Articles';
+import ArticlePage from './components/ArticlePage';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "articles",
     element: <Articles />,
+  },
+  {
+    path: "articles/:id",
+    element: <ArticlePage />,
   }
 ]);
 

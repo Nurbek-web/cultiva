@@ -1,96 +1,25 @@
 import React from 'react';
 import { Card } from 'antd';
 import "./Articles.css"
+import ArticleCard from './ArticleCard';
 
-const Articles = () => (
-  <>
-      <div className="main">
-    <h1>Educational Articles</h1>
-    <ul className="cards">
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/upload/images/Aerospring.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">Singapore-based Hydroponics Company Launches Turnkey Commercial Farming Solution</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/articles/th/14701.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">The Benefits of an Automated Greenhouse in Commercial Growing</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/upload/images/image7(1).jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">A Greenhouse Project in Almeria Reaches Unprecedented Dimensions</h2>
-              <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/articles/th/14503.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">6 Types of Greenhouse Poly Film Coverings</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/articles/th/14462.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">The Greatest Greenhouse Built in Spain in One Unit</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/articles/th/14271.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">Shedding Light on Diffused Glass Vs Clear Glass - Greenhouse</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/upload/images/greenhouse-for-cold-climates_modular-ceres-greenhouse.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">Best Year-Round Greenhouses for Cold Climates</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/articles/th/13589.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">2022 Top Article - A Guide To Planning A Commercial Aquaponics Greenhouse</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-      <li className="cards_item">
-        <div className="card">
-          <div className="card_image"><img src="https://www.agritechtomorrow.com/images/upload/images/UbiQD.jpg" /></div>
-          <div className="card_content">
-            <h2 className="card_title">NASA Funds Scale-Up of Fluorescent Greenhouse Roofing Technology</h2>
-            <button className="btn card_btn">Read More</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  </>
+const articles = [
+  {date: ["31", "Dec"], title: "Roger Federer", subtitle: "Tennis legend", description: "Roger Federer is a Swiss professional tennis player. Many players and analysts have called him the greatest male tennis player of all time.", subdescription: "Federer has won 18 Grand Slam singles titles, the most in history for a male tennis player, and held the No. 1 spot in the ATP rankings for a record 237 consecutive weeks and a record total of 302 weeks.", img: "https://68.media.tumblr.com/040d77e95e37f05fbc14b0b8ae3d3177/tumblr_opsismTLqh1vghf22o1_400.gif", payload: {}, articleID: "1"},
+  {date: ["31", "Dec"], title: "Roger Federer", subtitle: "Tennis legend", description: "Roger Federer is a Swiss professional tennis player. Many players and analysts have called him the greatest male tennis player of all time.", subdescription: "Federer has won 18 Grand Slam singles titles, the most in history for a male tennis player, and held the No. 1 spot in the ATP rankings for a record 237 consecutive weeks and a record total of 302 weeks.", img: "https://68.media.tumblr.com/040d77e95e37f05fbc14b0b8ae3d3177/tumblr_opsismTLqh1vghf22o1_400.gif", payload: {}, articleID: "1"},
+  {date: ["31", "Dec"], title: "Roger Federer", subtitle: "Tennis legend", description: "Roger Federer is a Swiss professional tennis player. Many players and analysts have called him the greatest male tennis player of all time.", subdescription: "Federer has won 18 Grand Slam singles titles, the most in history for a male tennis player, and held the No. 1 spot in the ATP rankings for a record 237 consecutive weeks and a record total of 302 weeks.", img: "https://68.media.tumblr.com/040d77e95e37f05fbc14b0b8ae3d3177/tumblr_opsismTLqh1vghf22o1_400.gif", payload: {}, articleID: "1"},
+  {date: ["31", "Dec"], title: "Roger Federer", subtitle: "Tennis legend", description: "Roger Federer is a Swiss professional tennis player. Many players and analysts have called him the greatest male tennis player of all time.", subdescription: "Federer has won 18 Grand Slam singles titles, the most in history for a male tennis player, and held the No. 1 spot in the ATP rankings for a record 237 consecutive weeks and a record total of 302 weeks.", img: "https://68.media.tumblr.com/040d77e95e37f05fbc14b0b8ae3d3177/tumblr_opsismTLqh1vghf22o1_400.gif", payload: {}, articleID: "1"},
+  {date: ["31", "Dec"], title: "Roger Federer", subtitle: "Tennis legend", description: "Roger Federer is a Swiss professional tennis player. Many players and analysts have called him the greatest male tennis player of all time.", subdescription: "Federer has won 18 Grand Slam singles titles, the most in history for a male tennis player, and held the No. 1 spot in the ATP rankings for a record 237 consecutive weeks and a record total of 302 weeks.", img: "https://68.media.tumblr.com/040d77e95e37f05fbc14b0b8ae3d3177/tumblr_opsismTLqh1vghf22o1_400.gif", payload: {}, articleID: "1"},
   
-);
+]
+
+const Articles = () => {
+  
+  return <>
+  <main className='main-articles'>
+    {articles.map(element => {
+      return <ArticleCard {...element} />
+    })}
+  </main>
+  </>
+};
 export default Articles;
