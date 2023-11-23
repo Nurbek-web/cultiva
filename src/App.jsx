@@ -34,33 +34,6 @@ import Game from './components/Game';
 import Articles from './components/Articles';
 import ArticlePage from './components/ArticlePage';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Landing />,
-  },
-  {
-    path: "chat",
-    element: <Chat />
-  },
-  {
-    path: "test",
-    element: <Test />
-  },
-  {
-    path: "game",
-    element: <Game />
-  },
-  {
-    path: "articles",
-    element: <Articles />,
-  },
-  {
-    path: "articles/:id",
-    element: <ArticlePage />,
-  }
-]);
-
 
 const items = [
   getItem('Main', '1', <PieChartOutlined />),
