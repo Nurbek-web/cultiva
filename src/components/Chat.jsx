@@ -55,7 +55,7 @@ const Chat = () => {
 
   async function processMessageToChatGPT(chatMessages) {
     const apiMessages = chatMessages.map((messageObject) => {
-      const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
+      const role = messageObject. sender === "ChatGPT" ? "assistant" : "user";
       return { role, content: messageObject.message };
     });
 
