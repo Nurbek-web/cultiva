@@ -14,15 +14,11 @@ const Chat = () => {
 
   const sendMessageToOpenAI = async (message) => {
     try {
-      const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+      const response = await fetch('http://localhost:3000/chatapi', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer YOUR_OPENAI_API_KEY',
-        },
         body: JSON.stringify({
-          prompt: message,
-          max_tokens: 100,
+          question: message,
+
         }),
       });
 
