@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import {
   DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
+  WechatOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -27,6 +25,7 @@ import {
 import Chat from './components/Chat';
 import Landing from './components/Landing';
 import Test from './components/Test';
+import Game from './components/Game';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "test",
     element: <Test />
+  },
+  {
+    path: "game",
+    element: <Game />
   }
 ]);
 
@@ -47,6 +50,7 @@ const router = createBrowserRouter([
 const items = [
   getItem('Main', '1', <PieChartOutlined />),
   getItem('Chat', '2', <DesktopOutlined />),
+  getItem('Game', '3', <WechatOutlined />),
 ];
 
 const App = () => {
