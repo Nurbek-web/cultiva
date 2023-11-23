@@ -116,7 +116,8 @@ const App = () => {
                 <Route path="/" element={<Landing />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/game*" element={<Game />} />
-                <Route path="/articles*" element={<Articles />} />
+                <Route path="/articles" element={<Articles />} />
+                <Route path="/articles/:id" element={<ArticlePage />} />
               </Routes>
             {/* <RouterProvider router={router} /> */}
 
