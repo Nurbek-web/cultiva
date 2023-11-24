@@ -9,6 +9,8 @@ import {
   TypingIndicator,
 } from '@chatscope/chat-ui-kit-react';
 
+const API_KEY = "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";
+
 const Chat = () => {
   const [messages, setMessages] = useState([
     {
@@ -67,9 +69,10 @@ const Chat = () => {
       ],
     };
 
-    const response = await fetch("https://cultiva-server.vercel.app/chatapi", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
+        Authorization: "Bearer " + API_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiRequestBody),
