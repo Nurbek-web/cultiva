@@ -3,7 +3,8 @@ import {
   DesktopOutlined,
   PieChartOutlined,
   ContainerOutlined,
-  WechatOutlined
+  WechatOutlined,
+  LaptopOutlined
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -37,12 +38,14 @@ import Article2 from './components/articles/Article2';
 import Article3 from './components/articles/Article3';
 import Article4 from './components/articles/Article4';
 import Article5 from './components/articles/Article5';
+import Automation from './components/Automation';
 
 const items = [
   getItem('Main', '1', <PieChartOutlined />),
   getItem('Chat', '2', <DesktopOutlined />),
   getItem('Game', '3', <WechatOutlined />),
-  getItem('Articles', '4', <ContainerOutlined />)
+  getItem('Articles', '4', <ContainerOutlined />),
+  getItem("Automation", '5', <LaptopOutlined />),
 ];
 
 const App = () => {
@@ -69,6 +72,9 @@ const App = () => {
     }
     else if (key == 4) {
       navigate("articles")
+    }
+    else if (key == 5) {
+      navigate("automation")
     }
     console.log(key)
   };
@@ -119,6 +125,7 @@ const App = () => {
                 <Route path="/" element={<Landing />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/game*" element={<Game />} />
+                <Route path="/automation" element={<Automation />} />,
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/articles/1" element={<Article1 />} />
                 <Route path="/articles/2" element={<Article2 />} />
